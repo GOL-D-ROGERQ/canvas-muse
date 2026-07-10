@@ -14,6 +14,7 @@ export default function Hero() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2">
+
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
@@ -61,16 +62,19 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
           >
-            <div className="relative h-[650px] w-full overflow-hidden rounded-[40px] shadow-2xl">
+            <div className="relative h-[650px] w-full overflow-hidden rounded-[40px] shadow-2xl select-none">
               <Image
                 src="/paintings/from heaven.jpeg"
                 alt="Heavenly Horizon"
                 fill
                 priority
-                className="object-cover transition-transform duration-700 hover:scale-105"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                className="object-cover transition-transform duration-700 hover:scale-105 select-none"
               />
             </div>
           </motion.div>
+
         </div>
       </div>
     </section>

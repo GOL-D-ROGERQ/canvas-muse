@@ -46,12 +46,14 @@ export default function GalleryPreview() {
             href={`/gallery/${painting.id}`}
             className="group overflow-hidden rounded-3xl bg-stone-100 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
           >
-            <div className="relative h-80 overflow-hidden">
+            <div className="relative h-80 overflow-hidden select-none">
               <Image
                 src={painting.image}
                 alt={painting.title}
                 fill
-                className="object-cover transition-transform duration-500 group-hover:scale-110"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
+                className="select-none object-cover transition-transform duration-500 group-hover:scale-110"
               />
             </div>
 
