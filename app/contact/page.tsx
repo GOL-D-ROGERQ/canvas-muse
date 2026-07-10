@@ -42,7 +42,7 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-semibold text-amber-600">Email</h3>
                 <p className="text-stone-600">
-                  hello@canvasmuse.com
+                  hna65114@gmail.com
                 </p>
               </div>
 
