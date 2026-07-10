@@ -6,28 +6,28 @@ import Link from "next/link";
 const paintings = [
   {
     id: "1",
-    title: "Golden Horizon",
-    image: "/images/gallery1.jpeg",
+    title: "The Peek of Serenity",
+    image: "/paintings/eye.jpeg",
     year: "2025",
     medium: "Oil on Canvas",
     size: "24 × 36 inches",
     description:
-      "A peaceful landscape inspired by golden sunsets and rolling hills.",
+      "A single eye peers through the paper, symbolizing mystery, perception, and hidden emotions.",
   },
   {
     id: "2",
-    title: "Silent Bloom",
-    image: "/images/gallery2.jpeg",
+    title: "The Dance of Bloom",
+    image: "/paintings/dance.jpeg",
     year: "2024",
     medium: "Acrylic",
     size: "20 × 30 inches",
     description:
-      "A vibrant floral composition representing growth and serenity.",
+      "A captivating depiction of Bharatanatyam, showcasing grace, precision, and cultural heritage. .",
   },
   {
     id: "3",
     title: "Ocean Dreams",
-    image: "/images/gallery3.jpeg",
+    image: "/paintings/woter.jpeg",
     year: "2025",
     medium: "Watercolor",
     size: "18 × 24 inches",
@@ -36,18 +36,18 @@ const paintings = [
   },
   {
     id: "4",
-    title: "Morning Light",
-    image: "/images/gallery4.jpeg",
+    title: "Classical dance",
+    image: "/paintings/ballet.jpeg",
     year: "2023",
     medium: "Oil",
     size: "24 × 30 inches",
     description:
-      "Soft morning sunlight illuminating a quiet countryside.",
+      "A classic ballet performance captured in oil.",
   },
   {
     id: "5",
-    title: "Forest Echo",
-    image: "/images/gallery5.jpeg",
+    title: "The Birdie",
+    image: "/paintings/birdie.jpeg",
     year: "2024",
     medium: "Acrylic",
     size: "30 × 40 inches",
@@ -56,13 +56,13 @@ const paintings = [
   },
   {
     id: "6",
-    title: "Crimson Sky",
-    image: "/images/gallery6.jpeg",
+    title: "Heavenly Horizon",
+    image: "/paintings/from heaven.jpeg",
     year: "2025",
     medium: "Mixed Media",
     size: "24 × 36 inches",
     description:
-      "A dramatic sunset with rich crimson tones and expressive textures.",
+      "A powerful monochrome composition portraying the triumph of light over darkness, where courage and justice prevail amidst ancient ruins. .",
   },
 ];
 
