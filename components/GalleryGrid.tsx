@@ -57,25 +57,56 @@ export default function GalleryGrid() {
                 layout
                 key={painting.id}
                 onClick={() => setSelected(painting)}
-                initial={{ opacity: 0, scale: .9 }}
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0 }}
                 whileHover={{ y: -8 }}
                 className="group text-left"
               >
-                <div className="relative h-[480px] overflow-hidden rounded-[28px] shadow-xl">
-
+                <div
+                  className="relative h-[480px] overflow-hidden rounded-[28px] shadow-xl"
+                  onContextMenu={(e) => e.preventDefault()}
+                >
                   <Image
                     src={painting.image}
                     alt={painting.title}
                     fill
-                    className="object-cover transition duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    draggable={false}
+                    className="object-cover select-none transition duration-700 group-hover:scale-110"
                   />
 
+                  {/* Repeating Watermark */}
+<div className="pointer-events-none absolute inset-0 z-10 overflow-hidden">
+  <div className="absolute -left-40 -top-40 rotate-[-30deg]">
+    {Array.from({ length: 40 }).map((_, i) => (
+      <div
+        key={i}
+        className="mb-14 flex gap-24 whitespace-nowrap"
+        style={{ marginLeft: i % 2 === 0 ? "0px" : "120px" }}
+      >
+        {Array.from({ length: 8 }).map((_, j) => (
+          <Image
+            key={j}
+            src="/watermark.png"
+            alt="Watermark"
+            width={150}
+            height={55}
+            draggable={false}
+            className="opacity-15 select-none"
+          />
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+                  {/* Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
-                  <div className="absolute bottom-8 left-8 opacity-0 transition duration-500 group-hover:opacity-100">
-                    <p className="uppercase tracking-[0.3em] text-white/70 text-sm">
+                  {/* Details */}
+                  <div className="absolute bottom-8 left-8 opacity-0 transition duration-500 group-hover:opacity-100 z-20">
+                    <p className="text-sm uppercase tracking-[0.3em] text-white/70">
                       {painting.medium}
                     </p>
 
@@ -87,7 +118,6 @@ export default function GalleryGrid() {
                       {painting.year}
                     </p>
                   </div>
-
                 </div>
               </motion.button>
             ))}
@@ -98,7 +128,6 @@ export default function GalleryGrid() {
           artwork={selected}
           onClose={() => setSelected(null)}
         />
-
       </div>
     </section>
   );
