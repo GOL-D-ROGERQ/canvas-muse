@@ -47,15 +47,15 @@ export default async function ArtworkPage({ params }: PageProps) {
           <div className="grid gap-16 lg:grid-cols-2">
 
             {/* Artwork */}
-            <div className="relative h-[700px] overflow-hidden rounded-[36px] shadow-2xl">
-              <Image
-                src={artwork.image}
-                alt={artwork.title}
-                fill
-                priority
-                className="object-cover"
-              />
-            </div>
+<div className="relative h-[700px] overflow-hidden rounded-[36px] shadow-2xl">
+  <Image
+    src={artwork.image}
+    alt={artwork.title}
+    fill
+    priority
+    className="object-cover"
+  />
+</div>
 
             {/* Info */}
             <div className="flex flex-col justify-center">

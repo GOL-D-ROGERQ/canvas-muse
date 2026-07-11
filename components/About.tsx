@@ -22,12 +22,14 @@ export default function About() {
 
           <div className="relative h-[450px] overflow-hidden rounded-[36px] shadow-2xl lg:h-[650px]">
   <Image
-    src="/images/artist.jpg"
-    alt="Artist working on a painting"
-    fill
-    priority
-    className="object-cover"
-  />
+  src="/images/artist.jpg"
+  alt="Artist working on a painting"
+  fill
+  priority
+  sizes="(max-width: 1024px) 100vw, 50vw"
+  className="object-cover"
+  draggable={false}
+/>
 </div>
         </motion.div>
 
