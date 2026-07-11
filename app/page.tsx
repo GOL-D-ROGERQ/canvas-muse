@@ -12,6 +12,7 @@ export default function Home() {
       <Hero />
       <FeaturedCollection />
       <About />
+      <BehindTheCanvas />
       <Footer />
     </main>
   );
