@@ -20,14 +20,15 @@ export default function About() {
           {/* Decorative Circle */}
           <div className="absolute -left-10 -top-10 h-48 w-48 rounded-full bg-amber-100 blur-3xl" />
 
-          <div className="relative h-[650px] overflow-hidden rounded-[36px] shadow-2xl">
-            <Image
-              src="/artist.jpg" // Replace with your sister's photo
-              alt="Manuela Zia"
-              fill
-              className="object-cover"
-            />
-          </div>
+          <div className="relative h-[450px] overflow-hidden rounded-[36px] shadow-2xl lg:h-[650px]">
+  <Image
+    src="/images/artist.jpg"
+    alt="Artist working on a painting"
+    fill
+    priority
+    className="object-cover"
+  />
+</div>
         </motion.div>
 
         {/* RIGHT - Content */}
@@ -59,7 +60,7 @@ export default function About() {
               Manuela Zia
             </span>
             , a young artist passionate about transforming emotions into
-            visual stories through acrylic and watercolor paintings.
+            visual stories through charcoal and pencil paintings.
           </p>
 
           <p className="mt-5 text-lg leading-8 text-stone-600">
@@ -71,7 +72,7 @@ export default function About() {
           {/* Info Grid */}
           <div className="mt-12 grid grid-cols-2 gap-6">
 
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <div className="rounded-2xl bg-white p-6 shadow-md">
               <h3 className="text-sm uppercase tracking-widest text-stone-500">
                 Experience
               </h3>
@@ -81,27 +82,27 @@ export default function About() {
               </p>
             </div>
 
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <div className="rounded-2xl bg-white p-6 shadow-md">
               <h3 className="text-sm uppercase tracking-widest text-stone-500">
                 Medium
               </h3>
 
               <p className="mt-2 text-2xl font-semibold">
-                Acrylic
+                Charcoal & Pencil
               </p>
             </div>
 
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <div className="rounded-2xl bg-white p-6 shadow-md">
               <h3 className="text-sm uppercase tracking-widest text-stone-500">
                 Style
               </h3>
 
               <p className="mt-2 text-2xl font-semibold">
-                Contemporary
+                Modern
               </p>
             </div>
 
-            <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <div className="rounded-2xl bg-white p-6 shadow-md">
               <h3 className="text-sm uppercase tracking-widest text-stone-500">
                 Inspiration
               </h3>
