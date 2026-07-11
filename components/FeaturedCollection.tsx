@@ -1,89 +1,121 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
+import ArtworkLightbox from "./ArtworkLightbox";
 
-const paintings = [
-  {
-    id: 1,
-    title: "The Peek of Serenity",
-    category: "Portrait",
-    image: "/paintings/eye.jpeg",
-  },
-  {
-    id: 2,
-    title: "The Dance of Bloom",
-    category: "Classical Art",
-    image: "/paintings/dance.jpeg",
-  },
-  {
-    id: 6,
-    title: "Heavenly Horizon",
-    category: "Fantasy",
-    image: "/paintings/from heaven.jpeg",
-  },
-];
+import { paintings } from "@/data/paintings";
 
 export default function FeaturedCollection() {
+  const [selectedArtwork, setSelectedArtwork] = useState<
+    (typeof paintings)[0] | null
+  >(null);
+
   return (
-    <section className="bg-white py-28">
-      <div className="mx-auto max-w-7xl px-8">
-        <div className="mb-16 text-center">
-          <p className="uppercase tracking-[0.35em] text-stone-500">
+    <section className="bg-[#F8F5F0] py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 text-center"
+        >
+          <p className="uppercase tracking-[0.4em] text-stone-500">
             Featured Collection
           </p>
 
-          <h2 className="mt-5 text-5xl font-bold">
-            Curated Masterpieces
+          <h2 className="mt-6 text-5xl font-bold text-stone-900 md:text-6xl">
+            Curated Works
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-stone-600">
-            Explore a carefully selected collection of paintings that blend
-            creativity, emotion, and timeless beauty.
+          <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-stone-600">
+            A selection of paintings inspired by emotion, nature, and
+            imagination. Each piece reflects a different story waiting to be
+            discovered.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {/* Gallery */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
           {paintings.map((painting, index) => (
             <motion.div
               key={painting.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15 }}
               viewport={{ once: true }}
+              transition={{ delay: index * 0.15 }}
+              className={index === 0 ? "lg:col-span-2" : ""}
             >
-              <Link
-                href={`/gallery/${painting.id}`}
-                className="group block overflow-hidden rounded-[30px] bg-[#F8F5F0] shadow-xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              <button
+                onClick={() => setSelectedArtwork(painting)}
+                className="group block w-full text-left"
               >
-                <div className="relative h-[420px] overflow-hidden">
-                  <Image
-                    src={painting.image}
-                    alt={painting.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
+                <div className="relative overflow-hidden rounded-[32px] shadow-xl">
+                  <div
+                    className={
+                      index === 0
+                        ? "relative h-[650px]"
+                        : "relative h-[420px]"
+                    }
+                  >
+                    <Image
+                      src={painting.image}
+                      alt={painting.title}
+                      fill
+                      className="object-cover transition duration-700 group-hover:scale-105"
+                    />
 
-                <div className="p-8">
-                  <p className="uppercase tracking-[0.25em] text-stone-500">
-                    {painting.category}
-                  </p>
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 transition duration-500 group-hover:opacity-100" />
 
-                  <h3 className="mt-3 text-3xl font-bold text-gray-900 transition-colors duration-300 group-hover:text-amber-600">
-                    {painting.title}
-                  </h3>
+                    {/* Text */}
+                    <div className="absolute bottom-8 left-8 translate-y-6 opacity-0 transition duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                      <p className="text-sm uppercase tracking-[0.3em] text-white/80">
+                        {painting.medium}
+                      </p>
 
-                  <div className="mt-6 inline-block rounded-full border border-black px-6 py-3 transition-all duration-300 group-hover:bg-black group-hover:text-white">
-                    View Artwork
+                      <h3 className="mt-2 text-3xl font-semibold text-white">
+                        {painting.title}
+                      </h3>
+
+                      <p className="mt-2 text-white/80">
+                        {painting.year}
+                      </p>
+
+                      <p className="mt-4 text-sm uppercase tracking-[0.3em] text-amber-300">
+                        Click to View →
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </Link>
+              </button>
             </motion.div>
           ))}
         </div>
+
+        {/* Bottom Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <Link
+            href="/gallery"
+            className="inline-flex items-center text-lg font-medium text-stone-700 transition hover:text-amber-700"
+          >
+            View Full Gallery →
+          </Link>
+        </motion.div>
       </div>
+
+      <ArtworkLightbox
+        artwork={selectedArtwork}
+        onClose={() => setSelectedArtwork(null)}
+      />
     </section>
   );
 }
