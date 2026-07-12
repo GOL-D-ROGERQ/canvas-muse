@@ -5,6 +5,7 @@ import FeaturedCollection from "@/components/FeaturedCollection";
 import About from "@/components/About";
 import Footer from "@/components/Footer";
 import BehindTheCanvas from "@/components/BehindTheCanvas";
+import PageTransition from "@/components/PageTransition";
 export default function Home() {
   return (
     <main className="bg-[#F8F5F0] text-[#1F1F1F]">

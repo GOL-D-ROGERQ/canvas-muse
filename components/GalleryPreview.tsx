@@ -1,5 +1,5 @@
 "use client";
-
+import PageTransition from "@/components/PageTransition";
 import Link from "next/link";
 import Image from "next/image";
 

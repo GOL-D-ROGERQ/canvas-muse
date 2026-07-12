@@ -31,19 +31,18 @@ export default function Navbar() {
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.7 }}
-      className="fixed top-0 left-0 right-0 z-50 flex justify-center px-6 pt-5"
+      className="fixed left-0 right-0 top-0 z-50 flex justify-center px-6 pt-5"
     >
       <div
-        className={`flex w-full max-w-7xl items-center justify-between rounded-full border border-white/40 bg-white/75 px-8 transition-all duration-300 backdrop-blur-xl ${
-          scrolled
-            ? "py-3 shadow-xl"
-            : "py-5 shadow-lg"
+        className={`flex w-full max-w-7xl items-center justify-between rounded-full border border-white/40 bg-white/75 px-8 backdrop-blur-xl transition-all duration-300 ${
+          scrolled ? "py-3 shadow-xl" : "py-5 shadow-lg"
         }`}
       >
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-3 text-2xl font-bold tracking-tight text-stone-900"
+          scroll={false}
+          className="flex items-center gap-3 text-2xl font-bold text-stone-900 transition hover:text-amber-600"
         >
           <FaPalette className="text-3xl text-amber-600" />
 
@@ -59,17 +58,16 @@ export default function Navbar() {
 
             return (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
-                className="group relative text-[16px] font-medium text-stone-700 transition-colors duration-300 hover:text-black"
+                scroll={false}
+                className="group relative font-medium text-stone-700 transition hover:text-amber-600"
               >
                 {link.name}
 
                 <span
                   className={`absolute -bottom-2 left-0 h-[2px] rounded-full bg-amber-600 transition-all duration-300 ${
-                    active
-                      ? "w-full"
-                      : "w-0 group-hover:w-full"
+                    active ? "w-full" : "w-0 group-hover:w-full"
                   }`}
                 />
               </Link>
@@ -80,7 +78,8 @@ export default function Navbar() {
         {/* Explore Button */}
         <Link
           href="/gallery"
-          className="rounded-full bg-black px-7 py-3 font-medium text-white transition-all duration-300 hover:-translate-y-1 hover:bg-amber-700 hover:shadow-lg"
+          scroll={false}
+          className="rounded-full bg-stone-900 px-6 py-3 text-white transition-all duration-300 hover:bg-amber-600 hover:scale-105"
         >
           Explore
         </Link>

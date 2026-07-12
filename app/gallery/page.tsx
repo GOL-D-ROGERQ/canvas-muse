@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import GalleryGrid from "@/components/GalleryGrid";
 import Footer from "@/components/Footer";
-
+import PageTransition from "@/components/PageTransition";
 export default function GalleryPage() {
   return (
     <main className="bg-[#F8F5F0] text-stone-900">
