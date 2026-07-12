@@ -1,53 +1,132 @@
 "use client";
 
-import { motion } from "framer-motion";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Hero() {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const rotateX = useSpring(
+    useTransform(mouseY, [-300, 300], [8, -8]),
+    {
+      stiffness: 120,
+      damping: 20,
+    }
+  );
+
+  const rotateY = useSpring(
+    useTransform(mouseX, [-300, 300], [-8, 8]),
+    {
+      stiffness: 120,
+      damping: 20,
+    }
+  );
+
+  const imageX = useSpring(
+    
+    useTransform(mouseX, [-300, 300], [-20, 20]),
+    {
+      stiffness: 100,
+      damping: 20,
+    }
+  );
+
+  const imageY = useSpring(
+    useTransform(mouseY, [-300, 300], [-20, 20]),
+    {
+      stiffness: 100,
+      damping: 20,
+    }
+  );
+
+  const handleMouseMove = (
+    e: React.MouseEvent<HTMLDivElement>
+  ) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    mouseX.set(
+      e.clientX - rect.left - rect.width / 2
+    );
+
+    mouseY.set(
+      e.clientY - rect.top - rect.height / 2
+    );
+  };
+
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden bg-[#F8F5F0] pt-32">
+    <section
+      onMouseMove={handleMouseMove}
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#F8F5F0] pt-32"
+    >
       {/* Background Blurs */}
-      <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-orange-200/40 blur-3xl" />
-      <div className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-yellow-100/40 blur-3xl" />
+
+      <motion.div
+        style={{
+          x: imageX,
+          y: imageY,
+        }}
+        className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-orange-200/40 blur-3xl"
+      />
+
+      <motion.div
+        style={{
+          x: imageX,
+          y: imageY,
+        }}
+        className="absolute bottom-0 right-0 h-[500px] w-[500px] rounded-full bg-yellow-100/40 blur-3xl"
+      />
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid items-center gap-16 lg:grid-cols-2">
 
           {/* LEFT */}
+
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            initial={{
+              opacity: 0,
+              x: -60,
+            }}
+            animate={{
+              opacity: 1,
+              x: 0,
+            }}
+            transition={{
+              duration: 0.8,
+            }}
           >
-            {/* Badge */}
             <div className="inline-flex items-center rounded-full border border-stone-300 bg-white/80 px-4 py-2 shadow-sm backdrop-blur-sm">
-              <span className="mr-2 text-lg">🎨</span>
+              <span className="mr-2 text-lg">
+                🎨
+              </span>
+
               <span className="text-sm font-medium tracking-wide text-stone-700">
                 Fine Art Portfolio
               </span>
             </div>
 
-            {/* Heading */}
             <h1 className="mt-8 text-5xl font-bold leading-tight text-stone-900 md:text-7xl">
               Art That
+
               <span className="block text-amber-700">
                 Tells Stories
               </span>
             </h1>
 
-            {/* Description */}
             <p className="mt-8 max-w-xl text-lg leading-8 text-stone-600">
               Hi, I'm{" "}
               <span className="font-semibold text-stone-900">
                 MANUELA ZIA
               </span>
-              , a young artist passionate about expressing emotions through
-              acrylic and watercolor paintings. Every artwork reflects a story
-              inspired by nature, imagination, and everyday life.
+              , a young artist passionate about expressing emotions through acrylic and watercolor paintings. Every artwork reflects a story inspired by nature, imagination, and everyday life.
             </p>
 
-            {/* Buttons */}
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/gallery"
@@ -66,24 +145,32 @@ export default function Hero() {
               </Link>
             </div>
 
-            {/* Stats */}
             <div className="mt-14 flex gap-10">
               <div className="transition-transform duration-300 hover:-translate-y-1">
-                <h3 className="text-3xl font-bold text-stone-900">35+</h3>
+                <h3 className="text-3xl font-bold text-stone-900">
+                  35+
+                </h3>
+
                 <p className="mt-1 text-sm text-stone-500">
                   Artworks
                 </p>
               </div>
 
               <div className="transition-transform duration-300 hover:-translate-y-1">
-                <h3 className="text-3xl font-bold text-stone-900">4</h3>
+                <h3 className="text-3xl font-bold text-stone-900">
+                  4
+                </h3>
+
                 <p className="mt-1 text-sm text-stone-500">
                   Collections
                 </p>
               </div>
 
               <div className="transition-transform duration-300 hover:-translate-y-1">
-                <h3 className="text-3xl font-bold text-stone-900">3</h3>
+                <h3 className="text-3xl font-bold text-stone-900">
+                  3
+                </h3>
+
                 <p className="mt-1 text-sm text-stone-500">
                   Mediums
                 </p>
@@ -92,28 +179,41 @@ export default function Hero() {
           </motion.div>
 
           {/* RIGHT */}
+
           <motion.div
-            initial={{ opacity: 0, x: 60 }}
+            initial={{
+              opacity: 0,
+              x: 60,
+            }}
             animate={{
               opacity: 1,
               x: 0,
               y: [0, -8, 0],
             }}
             transition={{
-              opacity: { duration: 1 },
-              x: { duration: 1 },
+              opacity: {
+                duration: 1,
+              },
+              x: {
+                duration: 1,
+              },
               y: {
                 duration: 5,
                 repeat: Infinity,
                 ease: "easeInOut",
               },
             }}
+            style={{
+              rotateX,
+              rotateY,
+              x: imageX,
+              y: imageY,
+              transformPerspective: 1200,
+            }}
             className="relative"
           >
-            {/* Decorative Ring */}
             <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full border border-amber-300/40" />
 
-            {/* Image */}
             <div className="relative h-[650px] rounded-[36px] border border-white/60 shadow-[0_25px_80px_rgba(0,0,0,0.15)]">
 
               <div className="relative h-full overflow-hidden rounded-[36px]">
@@ -123,15 +223,15 @@ export default function Hero() {
                   fill
                   priority
                   draggable={false}
-                  onContextMenu={(e) => e.preventDefault()}
+                  onContextMenu={(e) =>
+                    e.preventDefault()
+                  }
                   className="select-none object-cover transition-transform duration-1000 ease-out hover:scale-110"
                 />
 
-                {/* Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
-
-              {/* Floating Text */}
+                            {/* Floating Text */}
               <motion.div
                 initial={{
                   opacity: 0,
@@ -145,6 +245,10 @@ export default function Hero() {
                   delay: 0.6,
                   duration: 0.8,
                   ease: "easeOut",
+                }}
+                style={{
+                  x: useTransform(imageX, (v) => v * 0.4),
+                  y: useTransform(imageY, (v) => v * 0.4),
                 }}
                 className="absolute bottom-10 right-10 z-20 text-right"
               >
@@ -160,6 +264,20 @@ export default function Hero() {
                   Acrylic on Canvas
                 </p>
               </motion.div>
+
+              {/* Decorative Glow */}
+              <motion.div
+                animate={{
+                  opacity: [0.25, 0.45, 0.25],
+                  scale: [1, 1.08, 1],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -bottom-12 left-1/2 h-36 w-72 -translate-x-1/2 rounded-full bg-amber-300/30 blur-3xl"
+              />
             </div>
           </motion.div>
 

@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import ScrollProgress from "@/components/ScrollProgress";
 import Protection from "@/components/protection";
-
+import AppLoader from "@/components/AppLoader";
+import CustomCursor from "@/components/CustomCursor";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,9 +29,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F8F5F0]`}
+>
+  <ScrollProgress />
+
+  <AppLoader />
+
+  <Protection />
+<CustomCursor />
+  {children}
+        <AppLoader />
+
         <Protection />
+
         {children}
       </body>
     </html>
