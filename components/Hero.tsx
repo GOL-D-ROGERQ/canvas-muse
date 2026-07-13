@@ -214,20 +214,44 @@ export default function Hero() {
           >
             <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full border border-amber-300/40" />
 
-            <div className="relative h-[650px] rounded-[36px] border border-white/60 shadow-[0_25px_80px_rgba(0,0,0,0.15)]">
+            <div className="relative h-[650px] rounded-[36px] border border-white/60 shadow-[0_45px_120px_rgba(0,0,0,0.25)]">
 
               <div className="relative h-full overflow-hidden rounded-[36px]">
-                <Image
-                  src="/paintings/from heaven.jpeg"
-                  alt="Featured Artwork"
-                  fill
-                  priority
-                  draggable={false}
-                  onContextMenu={(e) =>
-                    e.preventDefault()
-                  }
-                  className="select-none object-cover transition-transform duration-1000 ease-out hover:scale-110"
-                />
+                <motion.div
+  animate={{
+    scale: [1, 1.08, 1],
+  }}
+  transition={{
+    duration: 18,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="relative h-full w-full"
+>
+  <Image
+    src="/paintings/from heaven.jpeg"
+    alt="Featured Artwork"
+    fill
+    priority
+    draggable={false}
+    onContextMenu={(e) => e.preventDefault()}
+    className="select-none object-cover"
+  />
+</motion.div>
+<motion.div
+  animate={{
+    x: ["-120%", "120%"],
+  }}
+  transition={{
+    duration: 4,
+    repeat: Infinity,
+    repeatDelay: 6,
+    ease: "easeInOut",
+  }}
+  className="pointer-events-none absolute inset-0"
+>
+  <div className="h-full w-32 rotate-12 bg-gradient-to-r from-transparent via-white/20 to-transparent blur-xl" />
+</motion.div>
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
               </div>
