@@ -1,40 +1,95 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { ReactNode, Children } from "react";
+import { motion, Variants } from "framer-motion";
 
 interface RevealProps {
-  children: React.ReactNode;
-  delay?: number;
+  children: ReactNode;
   className?: string;
+  delay?: number;
+ duration?: number;
+  distance?: number;
+  stagger?: number;
+  direction?: "up" | "down" | "left" | "right";
+  once?: boolean;
 }
 
 export default function Reveal({
   children,
-  delay = 0,
   className = "",
+  delay = 0,
+  duration = 0.8,
+  distance = 60,
+  stagger = 0.12,
+  direction = "up",
+  once = true,
 }: RevealProps) {
+  const x =
+    direction === "left"
+      ? distance
+      : direction === "right"
+      ? -distance
+      : 0;
+
+  const y =
+    direction === "up"
+      ? distance
+      : direction === "down"
+      ? -distance
+      : 0;
+
+  const container: Variants = {
+    hidden: {},
+
+    visible: {
+      transition: {
+        delayChildren: delay,
+        staggerChildren: stagger,
+      },
+    },
+  };
+
+  const item: Variants = {
+    hidden: {
+      opacity: 0,
+      x,
+      y,
+      scale: 0.96,
+      filter: "blur(10px)",
+    },
+
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      scale: 1,
+      filter: "blur(0px)",
+      transition: {
+        duration,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        y: 70,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
+      className={className}
+      variants={container}
+      initial="hidden"
+      whileInView="visible"
       viewport={{
-        once: true,
+        once,
         amount: 0.2,
       }}
-      transition={{
-        duration: 0.8,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={className}
     >
-      {children}
+      {Children.map(children, (child, index) => (
+        <motion.div
+          key={index}
+          variants={item}
+        >
+          {child}
+        </motion.div>
+      ))}
     </motion.div>
   );
 }

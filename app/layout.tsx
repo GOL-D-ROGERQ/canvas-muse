@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import Protection from "@/components/protection";
 import AppLoader from "@/components/AppLoader";
@@ -31,6 +31,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+      
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F8F5F0]`}
       >
         {/* Global Components */}
@@ -38,7 +39,21 @@ export default function RootLayout({
         <AppLoader />
         <Protection />
         <CustomCursor />
+<body
+  className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F8F5F0]`}
+>
+  <SmoothScroll />
 
+  <ScrollProgress />
+
+  <AppLoader />
+
+  <Protection />
+
+  <CustomCursor />
+
+  {children}
+</body>
         {/* Page Content */}
         {children}
       </body>
