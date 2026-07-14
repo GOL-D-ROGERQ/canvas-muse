@@ -6,7 +6,6 @@ import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import Protection from "@/components/protection";
 import AppLoader from "@/components/AppLoader";
-import CustomCursor from "@/components/CustomCursor";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,14 +34,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#F8F5F0]`}
       >
         <SmoothScroll />
-
         <ScrollProgress />
-
         <AppLoader />
-
         <Protection />
-
-        <CustomCursor />
 
         {children}
       </body>

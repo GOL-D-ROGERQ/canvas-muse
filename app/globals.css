@@ -46,15 +46,4 @@ img::selection {
 
 img::-moz-selection {
   background: transparent;
-  
-}
-html,
-body {
-  cursor: none;
-}
-
-a,
-button,
-img {
-  cursor: none;
 }
